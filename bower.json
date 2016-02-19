@@ -1,0 +1,31 @@
+{
+  "name": "sweva-visualization-stacked-area-chart",
+  "version": "1.0.6",
+  "authors": [
+    "Anonymous <anonymous@example.com>"
+  ],
+  "description": "An element providing a solution to no problem in particular.",
+  "keywords": [
+    "web-component",
+    "polymer",
+    "seed"
+  ],
+  "main": "sweva-visualization-stacked-area-chart.html",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/<USERNAME>/seed-element/",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "dependencies": {
+    "d3": "3.5.3",
+    "nvd3": "1.8.2",
+    "download-as-file": "https://github.com/bahmutov/download-as-file.git",
+    "polymer": "Polymer/polymer#^1.2.0"
+
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "^4.0.0"
+  }
+}
