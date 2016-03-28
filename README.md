@@ -1,19 +1,30 @@
-# seed-element
+## sweva-visualization-stacked-area-chart
 
-An element providing a starting point for your own reusable Polymer elements.
+Stacked Area Chart visualization module for the Collaborative Visualization Tool.
 
 
 ## Dependencies
 
-Element dependencies are managed via [Bower](http://bower.io/). You can
+Element dependencies are managed via [Bower](http://bower.io/). The build process is managed via gulp. You can
 install that via:
 
-    npm install -g bower
+    npm install -g gulp bower
 
 Then, go ahead and download the element's dependencies:
 
     bower install
 
+## Build
+
+To build the module for use in SWeVA:
+```sh
+gulp packdev
+```
+or
+```sh
+gulp pack
+```
+for minified files.
 
 ## Playing With Your Element
 
