@@ -5,7 +5,8 @@
     "gulp-vulcanize": "^6.0.0",
     "gulp-replace": "^0.5.4",
     "gulp-minify-html": "^1.0.2",
-    "gulp-minify-inline": "^0.1.1"
+    "gulp-minify-inline": "^0.1.1",
+    "gulp-rename": "^1.2.2"
   },
 
   "scripts": {

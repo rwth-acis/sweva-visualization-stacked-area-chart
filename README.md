@@ -1,6 +1,6 @@
 ## sweva-visualization-stacked-area-chart
 
-Stacked Area Chart visualization module for the Collaborative Visualization Tool.
+Stacked Area Chart visualization module for SWeVA.
 
 
 ## Dependencies
@@ -24,7 +24,10 @@ or
 ```sh
 gulp pack
 ```
-for minified files.
+for minified files. To produce both, run
+```sh
+gulp build
+```
 
 ## Playing With Your Element
 

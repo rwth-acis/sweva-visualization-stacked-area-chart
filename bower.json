@@ -1,18 +1,19 @@
 {
   "name": "sweva-visualization-stacked-area-chart",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "authors": [
-    "Anonymous <anonymous@example.com>"
+    "Alexander Ruppert",
+    "István Koren"
   ],
-  "description": "An element providing a solution to no problem in particular.",
+  "description": "Stacked Area Chart visualization module for SWeVA.",
   "keywords": [
     "web-component",
     "polymer",
     "seed"
   ],
   "main": "sweva-visualization-stacked-area-chart.html",
-  "license": "http://polymer.github.io/LICENSE.txt",
-  "homepage": "https://github.com/<USERNAME>/seed-element/",
+  "license": "https://raw.githubusercontent.com/rwth-acis/sweva-visualization-stacked-area-chart/master/LICENSE",
+  "homepage": "https://github.com/rwth-acis/sweva-visualization-stacked-area-chart/",
   "ignore": [
     "/.*",
     "/test/"
