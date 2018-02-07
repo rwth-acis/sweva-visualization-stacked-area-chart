@@ -94,6 +94,7 @@ Example:
 
                 #canvas svg {
                     height: 100%;
+                    width: 100%;
                 }
         </style>
         <div class="title">{{label}}</div>
@@ -115,214 +116,433 @@ Example:
         <a id="hiddenLink" class="hidden"></a>
     </template>
     <script>
-        Polymer({
-            is: 'sweva-visualization-stacked-area-chart',
+      class SwevaVisualizationStackedAreaChart extends Polymer.Element {
+        static get is() {
+          return 'sweva-visualization-stacked-area-chart';
+        }
 
-            properties: {
-                label: {
-                    type: String,
-                    value: ''
-                },
-
-                data: {
-                    type: Object,
-                    value: [],
-
-                },
-                config: {
-                    type: Object,
-                    value: {},
-
-                }
-
+        static get properties() {
+          return {
+              /* properties meta data object just like 1.x */
+            label: {
+              type: String,
+              value: ''
             },
 
-            set: function (value) {
-                
-                if(!this.initialized) {
-                    this.clear();
-                    this.config = value.config;
-                    this.setup(this.config);
-                }
-                else if (value.config) {
-                    if (JSON.stringify(value.config) !== JSON.stringify(this.config)) {
-                        if (Object.keys(value.config).length > 0) {
-                            this.clear();
-                            this.config = value.config;
-                            this.setup(this.config);
-                        }
-                    }
-                }
-                if (value.data) {
-                    if (value.data.length == 0) {
-                        return;
-                    }
-
-                    this.data = value.data;
-                    this.update();
-                }
-            },
-            // Element Lifecycle
-
-            ready: function () {
-                if (!this.initialized) {
-                    this.clear();
-                    this.setup(this.config);
-                }
+            data: {
+              type: Object,
+              value: []
 
             },
-
-            attached: function () {
-                var select = this.$$('#export-select');
-                select.addEventListener('click', this.handleExportClicked.bind(this), false);
-            },
-
-            detached: function () {
-                // The analog to `attached`, `detached` fires when the element has been
-                // removed from a document.
-                //
-                // Use this to clean up anything you did in `attached`.
-            },
-
-            // Element Behavior
-            setup: function (config) {
-
-                this.initialized = true;
-
-                this.config.label = config.label || 'Graph';
-                this.config.timeFormat = config.timeFormat || '%x';
-                this.config.yFormat = config.yFormat || ',.2f';
-                this.config.yLabel = config.yLabel || 'y';
-
-                this.label = this.config.label;
-
-
-                var self = this;
-                nv.addGraph(function () {
-                    self.chart = nv.models.stackedAreaChart()
-                                  .x(function (d) { return d[0] })
-                                  .y(function (d) { return d[1] })
-                                  .clipEdge(true)
-                                  .useInteractiveGuideline(true)
-                    ;
-
-                    self.chart.xAxis
-                        .showMaxMin(false)
-                        .tickFormat(function (d) { return d3.time.format('%x')(new Date(d)) });
-                    self.chart.yAxis
-                        .axisLabel(self.config.yLabel)
-                        .tickFormat(d3.format(',.2f'));
-
-                    nv.utils.windowResize(self.chart.update);
-                });
-
-            },
-            resize: function (width, height) {
-                this.$$('#canvas').style.height = height - 60 - 36 + 'px';
-                this.$$('#canvas').style.height = height - 60 - 36 + 'px';
-                if(this.chart) {
-                    this.chart.update();
-                }
-                
-            },
-            update: function (data) {
-                if (typeof data != 'undefined') {
-                    this.data = data;
-                    return;
-                }
-                var self = this;
-                var svg = this.$$('#canvas svg');
-
-                setTimeout(function () {
-                    
-                    d3.select(svg)
-                    .datum(self.data)
-                    .call(self.chart);
-                }, 1);
-
-            },
-            clear: function () {
-
-            },
-
-            convertSvg: function () {
-                //http://stackoverflow.com/questions/23218174/how-do-i-save-export-an-svg-file-after-creating-an-svg-with-d3-js-ie-safari-an
-
-                d3.selectAll('text')
-                  .attr('font-family', 'Verdana')
-                  .attr('font-size', '12');
-
-                var svg = this.$.canvas.querySelector('svg');
-
-                //get svg source.
-                var serializer = new XMLSerializer();
-                var source = serializer.serializeToString(svg);
-
-                //add name spaces.
-                if (!source.match(/^<svg[^>]+xmlns="http\:\/\/www\.w3\.org\/2000\/svg"/)) {
-                    source = source.replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"');
-                }
-                if (!source.match(/^<svg[^>]+"http\:\/\/www\.w3\.org\/1999\/xlink"/)) {
-                    source = source.replace(/^<svg/, '<svg xmlns:xlink="http://www.w3.org/1999/xlink"');
-                }
-
-                //add xml declaration
-                source = '<?xml version="1.0" standalone="no"?>' + source.replace(/\n/g, '');
-
-                return source;
-            },
-
-            handleExportClicked: function (event) {
-                var index = event.target.selectedIndex;
-                if (index == 1) {
-                    this.getSvg();
-                }
-                else if (index == 2) {
-                    this.getPng();
-                }
-                event.target.selectedIndex = 0;
-            },
-            getSvg: function () {
-                var source = this.convertSvg();
-
-                downloadAsFile({
-                    data: source,
-                    filename: this.config.label + '.svg'
-                });
-
-            },
-            getPng: function () {
-
-                var source = this.convertSvg();
-                var width = this.$.canvas.offsetWidth;
-                var height = this.$.canvas.offsetHeight;
-
-                
-                var imgsrc = 'data:image/svg+xml;utf8,' + source;
-                var img = this.$.hiddenImage;
-
-                var canvas = this.$.hiddenCanvas;
-                canvas.height = height;
-                canvas.width = width;
-                var context = canvas.getContext('2d');
-                var title = this.config.label;
-                var link = this.$.hiddenLink;
-
-                img.onload = function () {
-                    context.drawImage(img, 0, 0, width, height, 0, 0, width, height);
-                    var canvasdata = canvas.toDataURL('image/png');
-
-                    link.download = title + '.png';
-                    link.href = canvasdata;
-                    link.click();
-
-                }
-                img.width = width;
-                img.height = height;
-                img.src = imgsrc;
+            config: {
+              type: Object,
+              value: {}
 
             }
+          }
+        }
 
-        });
+        // Element Lifecycle
+        ready() {
+          super.ready();
+          if (!this.initialized) {
+            this.clear();
+            this.setup(this.config);
+          }
+        }
+
+        connectedCallback() {
+          super.connectedCallback();
+          Polymer.RenderStatus.beforeNextRender(this, function () {
+            var select = this.shadowRoot.querySelector('#export-select');
+            select.addEventListener('click', this.handleExportClicked.bind(this), false);
+          });
+        }
+
+        //not used functions
+        set(value) {
+            if(!this.initialized) {
+              this.clear();
+              this.config = value.config;
+              this.setup(this.config);
+            }
+            else if (value.config) {
+              if (JSON.stringify(value.config) !== JSON.stringify(this.config)) {
+                if (Object.keys(value.config).length > 0) {
+                  this.clear();
+                  this.config = value.config;
+                  this.setup(this.config);
+                }
+              }
+            }
+            if (value.data) {
+              if (value.data.length == 0) {
+                return;
+              }
+
+              this.data = value.data;
+              this.update();
+            }
+        }
+
+        // Element Behavior
+        setup(config) {
+            this.initialized = true;
+
+            this.config.label = config.label || 'Graph';
+            this.config.timeFormat = config.timeFormat || '%x';
+            this.config.yFormat = config.yFormat || ',.2f';
+            this.config.yLabel = config.yLabel || 'y';
+
+            this.label = this.config.label;
+
+
+            var self = this;
+            nv.addGraph(function () {
+              self.chart = nv.models.stackedAreaChart()
+                .x(function (d) { return d[0] })
+                .y(function (d) { return d[1] })
+                .clipEdge(true)
+                .useInteractiveGuideline(true)
+              ;
+
+              self.chart.xAxis
+                .showMaxMin(false)
+                .tickFormat(function (d) { return d3.time.format('%x')(new Date(d)) });
+              self.chart.yAxis
+                .axisLabel(self.config.yLabel)
+                .tickFormat(d3.format(',.2f'));
+
+              nv.utils.windowResize(self.chart.update);
+//              nv.utils.windowResize(function(){
+//                  let width = self.shadowRoot.querySelector('#canvas').clientWidth;
+//                  let height = self.shadowRoot.querySelector('#canvas').clientHeight;
+//                  self.chart.width = width;
+//                  self.chart.height = height;
+//                  self.chart.update;
+//              });
+////              $(window).bind('resize', function(){ d3.select('#$divId svg')
+////                .transition().duration($this->duration)
+////                .call(chart); });
+            });
+        }
+
+        resize(width, height) {
+            this.shadowRoot.querySelector('#canvas').style.height = height - 60 - 36 + 'px';
+            this.shadowRoot.querySelector('#canvas').style.width = width - 60 - 36 + 'px';
+            if(this.chart) {
+              this.chart.update();
+            }
+        }
+
+        update(data) {
+            if (typeof data != 'undefined') {
+              this.data = data;
+              return;
+            }
+            var self = this;
+            var svg = this.shadowRoot.querySelector('#canvas svg');
+
+            setTimeout(function () {
+              d3.select(svg)
+                .datum(self.data)
+                .call(self.chart);
+            }, 1);
+        }
+
+        clear() {
+
+        }
+
+        convertSvg() {
+            //http://stackoverflow.com/questions/23218174/how-do-i-save-export-an-svg-file-after-creating-an-svg-with-d3-js-ie-safari-an
+
+            d3.selectAll('text')
+              .attr('font-family', 'Verdana')
+              .attr('font-size', '12');
+
+            var svg = this.$.canvas.querySelector('svg');
+
+            //get svg source.
+            var serializer = new XMLSerializer();
+            var source = serializer.serializeToString(svg);
+
+            //add name spaces.
+            if (!source.match(/^<svg[^>]+xmlns="http\:\/\/www\.w3\.org\/2000\/svg"/)) {
+              source = source.replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"');
+            }
+            if (!source.match(/^<svg[^>]+"http\:\/\/www\.w3\.org\/1999\/xlink"/)) {
+              source = source.replace(/^<svg/, '<svg xmlns:xlink="http://www.w3.org/1999/xlink"');
+            }
+
+            //add xml declaration
+            source = '<?xml version="1.0" standalone="no"?>' + source.replace(/\n/g, '');
+
+            return source;
+        }
+
+        handleExportClicked(event) {
+            var index = event.target.selectedIndex;
+            if (index == 1) {
+              this.getSvg();
+            }
+            else if (index == 2) {
+              this.getPng();
+            }
+            event.target.selectedIndex = 0;
+        }
+
+        getSvg() {
+            var source = this.convertSvg();
+
+            downloadAsFile({
+              data: source,
+              filename: this.config.label + '.svg'
+            });
+        }
+
+        getPng() {
+            var source = this.convertSvg();
+            var width = this.$.canvas.offsetWidth;
+            var height = this.$.canvas.offsetHeight;
+
+
+            var imgsrc = 'data:image/svg+xml;utf8,' + source;
+            var img = this.$.hiddenImage;
+
+            var canvas = this.$.hiddenCanvas;
+            canvas.height = height;
+            canvas.width = width;
+            var context = canvas.getContext('2d');
+            var title = this.config.label;
+            var link = this.$.hiddenLink;
+
+            img.onload = function () {
+              context.drawImage(img, 0, 0, width, height, 0, 0, width, height);
+              var canvasdata = canvas.toDataURL('image/png');
+
+              link.download = title + '.png';
+              link.href = canvasdata;
+              link.click();
+
+            }
+            img.width = width;
+            img.height = height;
+            img.src = imgsrc;
+        }
+      }
+
+      // Register custom element definition using standard platform API
+      window.customElements.define(SwevaVisualizationStackedAreaChart.is, SwevaVisualizationStackedAreaChart);
+
+//        Polymer({
+//            is: 'sweva-visualization-stacked-area-chart',
+//
+//            properties: {
+//                label: {
+//                    type: String,
+//                    value: ''
+//                },
+//
+//                data: {
+//                    type: Object,
+//                    value: [],
+//
+//                },
+//                config: {
+//                    type: Object,
+//                    value: {},
+//
+//                }
+//
+//            },
+//
+//            set: function (value) {
+//
+//                if(!this.initialized) {
+//                    this.clear();
+//                    this.config = value.config;
+//                    this.setup(this.config);
+//                }
+//                else if (value.config) {
+//                    if (JSON.stringify(value.config) !== JSON.stringify(this.config)) {
+//                        if (Object.keys(value.config).length > 0) {
+//                            this.clear();
+//                            this.config = value.config;
+//                            this.setup(this.config);
+//                        }
+//                    }
+//                }
+//                if (value.data) {
+//                    if (value.data.length == 0) {
+//                        return;
+//                    }
+//
+//                    this.data = value.data;
+//                    this.update();
+//                }
+//            },
+//            // Element Lifecycle
+//
+//            ready: function () {
+//                if (!this.initialized) {
+//                    this.clear();
+//                    this.setup(this.config);
+//                }
+//
+//            },
+//
+//            attached: function () {
+//                var select = this.$$('#export-select');
+//                select.addEventListener('click', this.handleExportClicked.bind(this), false);
+//            },
+//
+//            detached: function () {
+//                // The analog to `attached`, `detached` fires when the element has been
+//                // removed from a document.
+//                //
+//                // Use this to clean up anything you did in `attached`.
+//            },
+//
+//            // Element Behavior
+//          setup: function (config) {
+//
+//            this.initialized = true;
+//
+//            this.config.label = config.label || 'Graph';
+//            this.config.timeFormat = config.timeFormat || '%x';
+//            this.config.yFormat = config.yFormat || ',.2f';
+//            this.config.yLabel = config.yLabel || 'y';
+//
+//            this.label = this.config.label;
+//
+//
+//            var self = this;
+//            nv.addGraph(function () {
+//              self.chart = nv.models.stackedAreaChart()
+//                .x(function (d) { return d[0] })
+//                .y(function (d) { return d[1] })
+//                .clipEdge(true)
+//                .useInteractiveGuideline(true)
+//              ;
+//
+//              self.chart.xAxis
+//                .showMaxMin(false)
+//                .tickFormat(function (d) { return d3.time.format('%x')(new Date(d)) });
+//              self.chart.yAxis
+//                .axisLabel(self.config.yLabel)
+//                .tickFormat(d3.format(',.2f'));
+//
+//              nv.utils.windowResize(self.chart.update);
+//            });
+//
+//          },
+//          resize: function (width, height) {
+//            this.$$('#canvas').style.height = height - 60 - 36 + 'px';
+//            this.$$('#canvas').style.height = height - 60 - 36 + 'px';
+//            if(this.chart) {
+//              this.chart.update();
+//            }
+//
+//          },
+//          update: function (data) {
+//            if (typeof data != 'undefined') {
+//              this.data = data;
+//              return;
+//            }
+//            var self = this;
+//            var svg = this.$$('#canvas svg');
+//
+//            setTimeout(function () {
+//
+//              d3.select(svg)
+//                .datum(self.data)
+//                .call(self.chart);
+//            }, 1);
+//
+//          },
+//          clear: function () {
+//
+//          },
+//
+//          convertSvg: function () {
+//            //http://stackoverflow.com/questions/23218174/how-do-i-save-export-an-svg-file-after-creating-an-svg-with-d3-js-ie-safari-an
+//
+//            d3.selectAll('text')
+//              .attr('font-family', 'Verdana')
+//              .attr('font-size', '12');
+//
+//            var svg = this.$.canvas.querySelector('svg');
+//
+//            //get svg source.
+//            var serializer = new XMLSerializer();
+//            var source = serializer.serializeToString(svg);
+//
+//            //add name spaces.
+//            if (!source.match(/^<svg[^>]+xmlns="http\:\/\/www\.w3\.org\/2000\/svg"/)) {
+//              source = source.replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"');
+//            }
+//            if (!source.match(/^<svg[^>]+"http\:\/\/www\.w3\.org\/1999\/xlink"/)) {
+//              source = source.replace(/^<svg/, '<svg xmlns:xlink="http://www.w3.org/1999/xlink"');
+//            }
+//
+//            //add xml declaration
+//            source = '<?xml version="1.0" standalone="no"?>' + source.replace(/\n/g, '');
+//
+//            return source;
+//          },
+//
+//          handleExportClicked: function (event) {
+//            var index = event.target.selectedIndex;
+//            if (index == 1) {
+//              this.getSvg();
+//            }
+//            else if (index == 2) {
+//              this.getPng();
+//            }
+//            event.target.selectedIndex = 0;
+//          },
+//          getSvg: function () {
+//            var source = this.convertSvg();
+//
+//            downloadAsFile({
+//              data: source,
+//              filename: this.config.label + '.svg'
+//            });
+//
+//          },
+//          getPng: function () {
+//
+//            var source = this.convertSvg();
+//            var width = this.$.canvas.offsetWidth;
+//            var height = this.$.canvas.offsetHeight;
+//
+//
+//            var imgsrc = 'data:image/svg+xml;utf8,' + source;
+//            var img = this.$.hiddenImage;
+//
+//            var canvas = this.$.hiddenCanvas;
+//            canvas.height = height;
+//            canvas.width = width;
+//            var context = canvas.getContext('2d');
+//            var title = this.config.label;
+//            var link = this.$.hiddenLink;
+//
+//            img.onload = function () {
+//              context.drawImage(img, 0, 0, width, height, 0, 0, width, height);
+//              var canvasdata = canvas.toDataURL('image/png');
+//
+//              link.download = title + '.png';
+//              link.href = canvasdata;
+//              link.click();
+//
+//            }
+//            img.width = width;
+//            img.height = height;
+//            img.src = imgsrc;
+//
+//          }
+//
+//        });
     </script>
 </dom-module>

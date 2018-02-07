@@ -1,0 +1,1109 @@
+{
+  "schema_version": "1.0.0",
+  "elements": [
+    {
+      "description": "",
+      "summary": "",
+      "path": "sweva-visualization-stacked-area-chart.html",
+      "properties": [
+        {
+          "name": "label",
+          "type": "string",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 121,
+              "column": 16
+            },
+            "end": {
+              "line": 124,
+              "column": 17
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"\""
+        },
+        {
+          "name": "data",
+          "type": "Object",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 126,
+              "column": 16
+            },
+            "end": {
+              "line": 130,
+              "column": 17
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "[]"
+        },
+        {
+          "name": "config",
+          "type": "Object",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 131,
+              "column": 16
+            },
+            "end": {
+              "line": 135,
+              "column": 17
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "{}"
+        }
+      ],
+      "methods": [
+        {
+          "name": "set",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 139,
+              "column": 12
+            },
+            "end": {
+              "line": 163,
+              "column": 13
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "value"
+            }
+          ]
+        },
+        {
+          "name": "ready",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 166,
+              "column": 12
+            },
+            "end": {
+              "line": 172,
+              "column": 13
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
+          "name": "attached",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 174,
+              "column": 12
+            },
+            "end": {
+              "line": 177,
+              "column": 13
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
+          "name": "detached",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 179,
+              "column": 12
+            },
+            "end": {
+              "line": 184,
+              "column": 13
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
+          "name": "setup",
+          "description": "Element Behavior",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 187,
+              "column": 12
+            },
+            "end": {
+              "line": 218,
+              "column": 13
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "config"
+            }
+          ]
+        },
+        {
+          "name": "resize",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 219,
+              "column": 12
+            },
+            "end": {
+              "line": 226,
+              "column": 13
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "width"
+            },
+            {
+              "name": "height"
+            }
+          ]
+        },
+        {
+          "name": "update",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 227,
+              "column": 12
+            },
+            "end": {
+              "line": 242,
+              "column": 13
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "data"
+            }
+          ]
+        },
+        {
+          "name": "clear",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 243,
+              "column": 12
+            },
+            "end": {
+              "line": 245,
+              "column": 13
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
+          "name": "convertSvg",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 247,
+              "column": 12
+            },
+            "end": {
+              "line": 272,
+              "column": 13
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
+          "name": "handleExportClicked",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 274,
+              "column": 12
+            },
+            "end": {
+              "line": 283,
+              "column": 13
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "event"
+            }
+          ]
+        },
+        {
+          "name": "getSvg",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 284,
+              "column": 12
+            },
+            "end": {
+              "line": 292,
+              "column": 13
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
+          "name": "getPng",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 293,
+              "column": 12
+            },
+            "end": {
+              "line": 323,
+              "column": 13
+            }
+          },
+          "metadata": {},
+          "params": []
+        }
+      ],
+      "staticMethods": [],
+      "demos": [],
+      "metadata": {},
+      "sourceRange": {
+        "start": {
+          "line": 117,
+          "column": 16
+        },
+        "end": {
+          "line": 325,
+          "column": 9
+        }
+      },
+      "privacy": "public",
+      "superclass": "HTMLElement",
+      "attributes": [
+        {
+          "name": "label",
+          "description": "",
+          "sourceRange": {
+            "start": {
+              "line": 121,
+              "column": 16
+            },
+            "end": {
+              "line": 124,
+              "column": 17
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "description": "",
+          "sourceRange": {
+            "start": {
+              "line": 126,
+              "column": 16
+            },
+            "end": {
+              "line": 130,
+              "column": 17
+            }
+          },
+          "metadata": {},
+          "type": "Object"
+        },
+        {
+          "name": "config",
+          "description": "",
+          "sourceRange": {
+            "start": {
+              "line": 131,
+              "column": 16
+            },
+            "end": {
+              "line": 135,
+              "column": 17
+            }
+          },
+          "metadata": {},
+          "type": "Object"
+        }
+      ],
+      "events": [],
+      "styling": {
+        "cssVariables": [],
+        "selectors": []
+      },
+      "slots": [],
+      "tagname": "sweva-visualization-stacked-area-chart"
+    },
+    {
+      "description": "",
+      "summary": "",
+      "path": "dist/sweva-visualization-stacked-area-chart.html",
+      "properties": [
+        {
+          "name": "label",
+          "type": "string",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 24414,
+              "column": 16
+            },
+            "end": {
+              "line": 24417,
+              "column": 17
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"\""
+        },
+        {
+          "name": "data",
+          "type": "Object",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 24419,
+              "column": 16
+            },
+            "end": {
+              "line": 24423,
+              "column": 17
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "[]"
+        },
+        {
+          "name": "config",
+          "type": "Object",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 24424,
+              "column": 16
+            },
+            "end": {
+              "line": 24428,
+              "column": 17
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "{}"
+        }
+      ],
+      "methods": [
+        {
+          "name": "set",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 24432,
+              "column": 12
+            },
+            "end": {
+              "line": 24456,
+              "column": 13
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "value"
+            }
+          ]
+        },
+        {
+          "name": "ready",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 24459,
+              "column": 12
+            },
+            "end": {
+              "line": 24465,
+              "column": 13
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
+          "name": "attached",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 24467,
+              "column": 12
+            },
+            "end": {
+              "line": 24470,
+              "column": 13
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
+          "name": "detached",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 24472,
+              "column": 12
+            },
+            "end": {
+              "line": 24477,
+              "column": 13
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
+          "name": "setup",
+          "description": "Element Behavior",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 24480,
+              "column": 12
+            },
+            "end": {
+              "line": 24511,
+              "column": 13
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "config"
+            }
+          ]
+        },
+        {
+          "name": "resize",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 24512,
+              "column": 12
+            },
+            "end": {
+              "line": 24519,
+              "column": 13
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "width"
+            },
+            {
+              "name": "height"
+            }
+          ]
+        },
+        {
+          "name": "update",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 24520,
+              "column": 12
+            },
+            "end": {
+              "line": 24535,
+              "column": 13
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "data"
+            }
+          ]
+        },
+        {
+          "name": "clear",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 24536,
+              "column": 12
+            },
+            "end": {
+              "line": 24538,
+              "column": 13
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
+          "name": "convertSvg",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 24540,
+              "column": 12
+            },
+            "end": {
+              "line": 24565,
+              "column": 13
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
+          "name": "handleExportClicked",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 24567,
+              "column": 12
+            },
+            "end": {
+              "line": 24576,
+              "column": 13
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "event"
+            }
+          ]
+        },
+        {
+          "name": "getSvg",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 24577,
+              "column": 12
+            },
+            "end": {
+              "line": 24585,
+              "column": 13
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
+          "name": "getPng",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 24586,
+              "column": 12
+            },
+            "end": {
+              "line": 24616,
+              "column": 13
+            }
+          },
+          "metadata": {},
+          "params": []
+        }
+      ],
+      "staticMethods": [],
+      "demos": [],
+      "metadata": {},
+      "sourceRange": {
+        "start": {
+          "line": 24410,
+          "column": 16
+        },
+        "end": {
+          "line": 24618,
+          "column": 9
+        }
+      },
+      "privacy": "public",
+      "superclass": "HTMLElement",
+      "attributes": [
+        {
+          "name": "label",
+          "description": "",
+          "sourceRange": {
+            "start": {
+              "line": 24414,
+              "column": 16
+            },
+            "end": {
+              "line": 24417,
+              "column": 17
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "description": "",
+          "sourceRange": {
+            "start": {
+              "line": 24419,
+              "column": 16
+            },
+            "end": {
+              "line": 24423,
+              "column": 17
+            }
+          },
+          "metadata": {},
+          "type": "Object"
+        },
+        {
+          "name": "config",
+          "description": "",
+          "sourceRange": {
+            "start": {
+              "line": 24424,
+              "column": 16
+            },
+            "end": {
+              "line": 24428,
+              "column": 17
+            }
+          },
+          "metadata": {},
+          "type": "Object"
+        }
+      ],
+      "events": [],
+      "styling": {
+        "cssVariables": [],
+        "selectors": []
+      },
+      "slots": [],
+      "tagname": "sweva-visualization-stacked-area-chart"
+    },
+    {
+      "description": "",
+      "summary": "",
+      "path": "dist/sweva-visualization-stacked-area-chart.min.html",
+      "properties": [
+        {
+          "name": "label",
+          "type": "string",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 11,
+              "column": 1571
+            },
+            "end": {
+              "line": 11,
+              "column": 1599
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"\""
+        },
+        {
+          "name": "data",
+          "type": "Object",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 11,
+              "column": 1600
+            },
+            "end": {
+              "line": 11,
+              "column": 1627
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "[]"
+        },
+        {
+          "name": "config",
+          "type": "Object",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 11,
+              "column": 1628
+            },
+            "end": {
+              "line": 11,
+              "column": 1657
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "{}"
+        }
+      ],
+      "methods": [
+        {
+          "name": "set",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 11,
+              "column": 1659
+            },
+            "end": {
+              "line": 11,
+              "column": 1980
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "t"
+            }
+          ]
+        },
+        {
+          "name": "ready",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 11,
+              "column": 1981
+            },
+            "end": {
+              "line": 11,
+              "column": 2055
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
+          "name": "attached",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 11,
+              "column": 2056
+            },
+            "end": {
+              "line": 11,
+              "column": 2175
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
+          "name": "detached",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 11,
+              "column": 2176
+            },
+            "end": {
+              "line": 11,
+              "column": 2197
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
+          "name": "setup",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 11,
+              "column": 2198
+            },
+            "end": {
+              "line": 11,
+              "column": 2787
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "t"
+            }
+          ]
+        },
+        {
+          "name": "resize",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 11,
+              "column": 2788
+            },
+            "end": {
+              "line": 11,
+              "column": 2931
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "t"
+            },
+            {
+              "name": "i"
+            }
+          ]
+        },
+        {
+          "name": "update",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 11,
+              "column": 2932
+            },
+            "end": {
+              "line": 11,
+              "column": 3104
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "t"
+            }
+          ]
+        },
+        {
+          "name": "clear",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 11,
+              "column": 3105
+            },
+            "end": {
+              "line": 11,
+              "column": 3123
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
+          "name": "convertSvg",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 11,
+              "column": 3124
+            },
+            "end": {
+              "line": 11,
+              "column": 3637
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
+          "name": "handleExportClicked",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 11,
+              "column": 3638
+            },
+            "end": {
+              "line": 11,
+              "column": 3763
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "t"
+            }
+          ]
+        },
+        {
+          "name": "getSvg",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 11,
+              "column": 3764
+            },
+            "end": {
+              "line": 11,
+              "column": 3865
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
+          "name": "getPng",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 11,
+              "column": 3866
+            },
+            "end": {
+              "line": 11,
+              "column": 4276
+            }
+          },
+          "metadata": {},
+          "params": []
+        }
+      ],
+      "staticMethods": [],
+      "demos": [],
+      "metadata": {},
+      "sourceRange": {
+        "start": {
+          "line": 11,
+          "column": 1514
+        },
+        "end": {
+          "line": 11,
+          "column": 4277
+        }
+      },
+      "privacy": "public",
+      "superclass": "HTMLElement",
+      "attributes": [
+        {
+          "name": "label",
+          "description": "",
+          "sourceRange": {
+            "start": {
+              "line": 11,
+              "column": 1571
+            },
+            "end": {
+              "line": 11,
+              "column": 1599
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "description": "",
+          "sourceRange": {
+            "start": {
+              "line": 11,
+              "column": 1600
+            },
+            "end": {
+              "line": 11,
+              "column": 1627
+            }
+          },
+          "metadata": {},
+          "type": "Object"
+        },
+        {
+          "name": "config",
+          "description": "",
+          "sourceRange": {
+            "start": {
+              "line": 11,
+              "column": 1628
+            },
+            "end": {
+              "line": 11,
+              "column": 1657
+            }
+          },
+          "metadata": {},
+          "type": "Object"
+        }
+      ],
+      "events": [],
+      "styling": {
+        "cssVariables": [],
+        "selectors": []
+      },
+      "slots": [],
+      "tagname": "sweva-visualization-stacked-area-chart"
+    }
+  ]
+}
